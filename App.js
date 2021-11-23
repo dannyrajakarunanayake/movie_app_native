@@ -8,16 +8,18 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
 import productsReducer from "./store/reducers/products";
-import ShopNavigator from "./navigation/ShopNavigator";
+import NavigationContainer from "./navigation/NavigationContainer";
 import cartReducer from "./store/reducers/cart";
-import OrdersReducer from "./store/reducers/orders";
+import ordersReducer from "./store/reducers/orders";
+import authReducer from "./store/reducers/auth";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,
-  orders: OrdersReducer,
+  orders: ordersReducer,
+  auth: authReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
@@ -43,7 +45,7 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-      <ShopNavigator />
+      <NavigationContainer />
     </Provider>
   );
 }
